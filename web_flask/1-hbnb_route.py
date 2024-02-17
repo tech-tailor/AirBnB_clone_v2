@@ -15,7 +15,7 @@ def hello():
 
 
 @app.route('/hbnb', strict_slashes=False)
-def hello():
+def display_hbnb():
     """
     simple flask to display hello HBNB
     """
