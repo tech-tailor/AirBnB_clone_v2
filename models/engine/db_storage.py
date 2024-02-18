@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ db storage
-"""
+""" 
 
 from sqlalchemy import create_engine
 import os
@@ -17,7 +17,7 @@ class DBStorage:
         self.__engine = self.__create_engine()
         if os.getenv('HBNB_ENV') == 'test':
             self.Base.metadata.drop_all(self.__engine)
-        
+         
     def __create_engine(self):
         """ create sqlalchemy engine"""
         user = os.getenv('HBNB_MYSQL_USER')
@@ -67,10 +67,6 @@ class DBStorage:
         base_model.Base.metadata.create_all(self.__engine)
         self.__session = scoped_session(sessionmaker(bind=self.__engine, expire_on_commit=False))
 
-
-
-
-
-
-
-
+    def close(self):
+        """close the session"""
+        self.__session.remove()
